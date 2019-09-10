@@ -5,9 +5,7 @@ class Cliente {
     Endereco endereco = new Endereco();
     
     private ArrayList<String> historicoPedidos = new ArrayList<>();
-    private ArrayList<String> listaClientes = new ArrayList<>();
-
-    
+    private ArrayList<String> listaClientes = new ArrayList<>();   
 
 	public boolean verificaLista(String nome_1) {
         for (String i : this.listaClientes){
@@ -31,7 +29,6 @@ class Cliente {
         Integer fone_1 = scan.nextInt();
         setFone(fone_1);
 
-        endereco.cadastrarCliente();
     }*/
 
 }
