@@ -34,12 +34,18 @@ class Marmita {
         refeicao.addSobremesas("Pudim", 1.80);
         refeicao.addSobremesas("Mousse de maracujá", 1.5);
         
-     
-
+        //Adicionar Bebidas ao menu
+        refeicao.addBebidas("Coca Cola", 5.0);
+        refeicao.addBebidas("Pepsi", 4.5); 
+        refeicao.addBebidas("Suco de Laranja", 4.00);
+        refeicao.addBebidas("Suco de Uva", 4.00);
+        refeicao.addBebidas("Água", 2.0);
+         
         refeicao.mostrarPrincipais();
         refeicao.mostrarSaladas();
         refeicao.mostrarSobremesas();
         refeicao.mostrarAdicionais();
+        refeicao.mostrarBebidas();
 
 
 
