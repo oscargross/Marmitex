@@ -5,6 +5,7 @@ class Comida {
     ArrayList<Saladas> listaSaladas;
     ArrayList<Sobremesas> listaSobremesas;
     ArrayList<Adicionais> listaAdicionais;
+    ArrayList<Bebidas> listaBebidas;
     public Comida(){
         listaPrincipais = new ArrayList<>();
         listaSaladas = new ArrayList<>();
@@ -35,6 +36,12 @@ class Comida {
         adicional.setV1(valor);
         listaAdicionais.add(adicional);
     }
+    public void addBebidas(String alimento, Double valor){
+        Bebidas bebida = new Bebidas();
+        adicional.setB1(alimento);
+        adicional.setV1(valor);
+        listaBebidas.add(bebida);
+    }
 
     public void mostrarPrincipais() {
         for (int i = 0; i < listaPrincipais.size(); i++) {
@@ -59,5 +66,10 @@ class Comida {
             System.out.println(listaAdicionais.get(i));
         }
         System.out.println("\n");
-    }   
+    }
+    public void mostrarBebidas() {
+        for (int i = 0; i < listaBebidas.size(); i++) {
+            System.out.println(listaBebidas.get(i));
+        }
+        System.out.println("\n");   
 }
