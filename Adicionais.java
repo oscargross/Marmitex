@@ -9,7 +9,7 @@ class Adicionais {
         return a1;
     }    
     public void setV1(Double v1) {
-        this.v1 = v1;vv
+        this.v1 = v1;
     }
     public Double getV1() {
         return v1;
