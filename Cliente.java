@@ -3,9 +3,8 @@ import java.util.Scanner;
 
 class Cliente {
     DadosCliente dados = new DadosCliente();
-
     private ArrayList<String> historicoPedidos = new ArrayList<>();
-    private ArrayList<String> listaClientes = new ArrayList<>();
+    private ArrayList<Cliente> listaClientes = new ArrayList<>();
 
     public boolean verificaLista(String nome_1) {
         for (String i : this.listaClientes) {

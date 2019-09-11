@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Endereco {
+class DadosCliente {
     private String nome;
     private Integer cpf;
     private Integer fone;
@@ -8,7 +8,6 @@ class Endereco {
     private Integer cep;
     private Integer numero;
     private String bairro;
-    private Endereco endereco;
 
     public String getNome() {
         return nome;
@@ -30,12 +29,6 @@ class Endereco {
     }
     public String getRua() {
         return rua;
-    }
-    public Endereco getEndereco() {
-        return endereco;
-    }
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
     }
     public String getBairro() {
         return bairro;

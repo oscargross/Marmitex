@@ -5,12 +5,14 @@ class Marmita {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Comida refeicao = new Comida();
-        //Adicionar Saladas ao menu
+        //Adicionar Saladas ao menu.
         refeicao.addSaladas("Alface", 1.00);
         refeicao.addSaladas("Tomate", 1.20);
         refeicao.addSaladas("Couve-Flor", 1.40);
         refeicao.addSaladas("rucula", 1.20);
         refeicao.addSaladas("Cenoura e Beterraba", 1.30);
+        refeicao.addSaladas("Cenoura e Beterraba", 1.30);
+
 
         //Adicionar Partos Principais ao menu
         refeicao.addPrincipais("Arroz, Feijão e batata frita", 5.50);
@@ -34,48 +36,44 @@ class Marmita {
         refeicao.addSobremesas("Pudim", 1.80);
         refeicao.addSobremesas("Mousse de maracujá", 1.5);
         
-     
-
         refeicao.mostrarPrincipais();
         refeicao.mostrarSaladas();
         refeicao.mostrarSobremesas();
         refeicao.mostrarAdicionais();
 
-
-
-        Marmita marmita = new Marmita();
+        Cliente cliente = new Cliente();
         ArrayList<String> listaClientes = new ArrayList<>();
-        String clienteO="";
-        Cliente cliente=new Cliente(clienteO);
-        System.out.println("Bem vindo ao Sistema Marmitex PF\nVocê já possui cadastro conosco?\n1 - sim        0 - não");
-        int possuiCadastro = scan.nextInt();
-        System.out.println("Qual o seu nome? ");
-        String nome_1 = scan.next();
-        if (cliente.verificaLista(nome_1)){
-            System.out.println("Você já possui cadastro conosco");
-        }else{
-            System.out.println("Não possui cadastro");
-            cliente.cadastrarCliente(nome_1);
-        }
+        System.out.println("Bem vindo ao Sistema Marmitex PF\nPreencha os dados a seguir para completar o cadastro: ");
+        System.out.println("Qual o seu nome: ");
+        cliente.dados.setNome(scan.next()); 
+
+        System.out.println("Qual o seu cpf: ");
+        cliente.dados.setCpf(scan.nextInt()); 
+        System.out.println("Qual o seu fone: ");
+        cliente.dados.setFone(scan.nextInt()); 
+        System.out.println("Qual a sua rua: ");
+        cliente.dados.setRua(scan.next()); 
+        System.out.println("Qual o numero de seu endereço: ");
+        cliente.dados.setNumero(scan.nextInt()); 
+        System.out.println("Qual a seu CEP: ");
+        cliente.dados.setCep(scan.nextInt()); 
+        System.out.println("Qual a seu Bairro: ");
+        cliente.dados.setBairro(scan.next());
         System.out.println("Cadastro concluido com sucesso");
-        
-        marmita.plano();
+        cliente.getListaClientes.add(cliente);
 
 
- 
-    }
-
-    public void plano() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Digite o numero correspondente a opção: \n1 - Gostaria de fazer um pedido personaizado\n2 - Gostaria de adquirir o plano de marmitas semanais");
-        Integer plano = scan.nextInt();    
+        System.out.println("Selecione a opção:\n1 - desejo criar minha marmita\n2 - desejo o plano marmitas semanais");
+        Double plano = scan.nextDouble();
         if (plano == 1){
-            System.out.println("Os pratos são compostos por saladas, alimento principal e sobremesa");
-            
-
+            System.out.println("Escolha a salada:\n");
+            refeicao.mostrarSaladas();
 
 
         }
+
+        
+            
     }
 
 }   
