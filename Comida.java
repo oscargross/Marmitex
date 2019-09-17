@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+//Classe Modelo
 class Comida {
     ArrayList<ArrayList<Componentes>> listaTodasComidas;
     ArrayList<Componentes> listaPrincipais;
@@ -29,16 +29,13 @@ class Comida {
         listaTodasComidas.add(listaBebidas);
 
     }   
-    public ArrayList<Componentes> addComida(String alimento, Double valor, ArrayList<Componentes> listaTempComidas) {
+    public Componentes addComida(String alimento, Double valor) {
         Componentes tipoComida = new Componentes();
         tipoComida.setAlimento(alimento);
         tipoComida.setValor(valor);
-        listaTempComidas.add(tipoComida);
-        return listaTempComidas;
+        return tipoComida;
     }
     public void mostrarListaComidas(ArrayList<Componentes> listaComidasMostrar) {
-        listaComidasMostrar = new ArrayList<Componentes>();
-
         for (int i = 1; i < listaComidasMostrar.size(); i++) {
             System.out.print(i+" - ");
             System.out.println(listaComidasMostrar.get(i));
