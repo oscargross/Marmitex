@@ -1,13 +1,13 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 class Cliente {
     DadosCliente dados = new DadosCliente();
     private ArrayList<String> historicoPedidos = new ArrayList<>();
     private ArrayList<Cliente> listaClientes = new ArrayList<>();
+    
 
     public boolean verificaLista(String nome_1) {
-        for (String i : this.listaClientes) {
+        for (Cliente i : this.listaClientes) {
             if (nome_1.equals(i)) {
                 return true;
             }
@@ -21,12 +21,16 @@ class Cliente {
     public void setHistoricoPedidos(ArrayList<String> historicoPedidos) {
         this.historicoPedidos = historicoPedidos;
     }
-    public ArrayList<String> getListaClientes() {
+    public ArrayList<Cliente> getListaClientes() {
         return listaClientes;
     }
 
-    public void setListaClientes(ArrayList<String> listaClientes) {
+    public void setListaClientes(ArrayList<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
+    }
+	public void adicionarCliente(Cliente cliente) {
+        this.listaClientes.add(cliente);
+
     }
 
 }
