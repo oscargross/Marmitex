@@ -2,9 +2,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class Marmita {
+    Scanner scan = new Scanner(System.in);//seção critica é a parte do codigo que pode ser acessada opr 2 processos ao mesmo tempo
+
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
         Comida refeicao = new Comida();
+
         //Adicionar Saladas ao menu.
         refeicao.addSaladas("Alface", 1.00);
         refeicao.addSaladas("Tomate", 1.20);
@@ -12,7 +14,6 @@ class Marmita {
         refeicao.addSaladas("rucula", 1.20);
         refeicao.addSaladas("Cenoura e Beterraba", 1.30);
         refeicao.addSaladas("Cenoura e Beterraba", 1.30);
-
 
         //Adicionar Partos Principais ao menu
         refeicao.addPrincipais("Arroz, Feijão e batata frita", 5.50);
@@ -41,7 +42,7 @@ class Marmita {
         refeicao.addBebidas("Pepsi", 4.5); 
         refeicao.addBebidas("Suco de Laranja", 4.00);
         refeicao.addBebidas("Suco de Uva", 4.00);
-        refeicao.addBebidas("Água", 2.0);
+        refeicao.addBebidas("Agua", 2.0);
          
         refeicao.mostrarPrincipais();
         refeicao.mostrarSaladas();
@@ -49,12 +50,23 @@ class Marmita {
         refeicao.mostrarAdicionais();
         refeicao.mostrarBebidas();
 
+
+        Scanner scan = new Scanner(System.in);
+        Marmita funcaoCliente = new Marmita();
+        funcaoCliente.cadastro();
+        System.out.println("Selecione a opção:\n1 - desejo criar minha marmita\t2 - desejo o plano marmitas semanais");
+        Double plano = scan.nextDouble();
+        if (plano == 1){
+            funcaoCliente.inserirItens();
+        }
+
+ 
+    }
+    public void cadastro(){
         Cliente cliente = new Cliente();
-        ArrayList<String> listaClientes = new ArrayList<>();
         System.out.println("Bem vindo ao Sistema Marmitex PF\nPreencha os dados a seguir para completar o cadastro: ");
         System.out.println("Qual o seu nome: ");
         cliente.dados.setNome(scan.next()); 
-
         System.out.println("Qual o seu cpf: ");
         cliente.dados.setCpf(scan.nextInt()); 
         System.out.println("Qual o seu fone: ");
@@ -67,22 +79,31 @@ class Marmita {
         cliente.dados.setCep(scan.nextInt()); 
         System.out.println("Qual a seu Bairro: ");
         cliente.dados.setBairro(scan.next());
+        cliente.adicionarCliente(cliente);
         System.out.println("Cadastro concluido com sucesso");
-        cliente.getListaClientes.add(cliente);
-
-
-        System.out.println("Selecione a opção:\n1 - desejo criar minha marmita\n2 - desejo o plano marmitas semanais");
-        Double plano = scan.nextDouble();
-        if (plano == 1){
-            System.out.println("Escolha a salada:\n");
-            refeicao.mostrarSaladas();
-
-
-        }
-
-        
-            
     }
-
+    public void inserirItens() {
+        ArrayList<Object> listaPedidos = new ArrayList<>();
+        while (true){
+            System.out.println("Escolha um dos itens:\n");
+            refeicao.mostrarSaladas();
+            int opcao = scan.nextInt(); 
+            for ( int i =0; i < refeicao.listaSaladas.size();i++){
+                if (opcao == i)   {
+                    Object variavel = refeicao.listaSaladas.get(i);
+                    listaPedidos.add(variavel);
+                    break;
+                }
+            }
+            System.out.println("Deseja escolher mais algum item:\n1: Sim\t2 - Nâo");
+            Double maisItens = scan.nextDouble();
+            if (maisItens == 1){
+                continue;
+            }else{
+                break;
+            }
+        } 
+        
+    }
 }   
 

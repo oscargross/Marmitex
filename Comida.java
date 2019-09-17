@@ -11,6 +11,12 @@ class Comida {
         listaSaladas = new ArrayList<>();
         listaSobremesas = new ArrayList<>();
         listaAdicionais = new ArrayList<>();
+        listaBebidas = new ArrayList<>();
+        listaPrincipais.add(null);
+        listaSaladas.add(null);
+        listaSobremesas.add(null);
+        listaAdicionais.add(null);
+        listaBebidas.add(null);
     }   
     public void addPrincipais(String alimento, Double valor){
         Principais principal = new Principais();
@@ -38,38 +44,44 @@ class Comida {
     }
     public void addBebidas(String alimento, Double valor){
         Bebidas bebida = new Bebidas();
-        adicional.setB1(alimento);
-        adicional.setV1(valor);
+        bebida.setB1(alimento);
+        bebida.setV1(valor);
         listaBebidas.add(bebida);
     }
 
     public void mostrarPrincipais() {
-        for (int i = 0; i < listaPrincipais.size(); i++) {
+        for (int i = 1; i < listaPrincipais.size(); i++) {
+            System.out.print(i);
             System.out.println(listaPrincipais.get(i));
         }
         System.out.println("\n");
     }
     public void mostrarSaladas() {
-        for (int i = 0; i < listaSaladas.size(); i++) {
+        for (int i = 1; i < listaSaladas.size(); i++) {
+            System.out.print(i);
             System.out.println(listaSaladas.get(i));
         }
         System.out.println("\n");
     }  
     public void mostrarSobremesas() {
-        for (int i = 0; i < listaSobremesas.size(); i++) {
+        for (int i = 1; i < listaSobremesas.size(); i++) {
+            System.out.print(i);
             System.out.println(listaSobremesas.get(i));
         }
         System.out.println("\n");
     }    
     public void mostrarAdicionais() {
-        for (int i = 0; i < listaAdicionais.size(); i++) {
+        for (int i = 1; i < listaAdicionais.size(); i++) {
+            System.out.print(i);
             System.out.println(listaAdicionais.get(i));
         }
         System.out.println("\n");
     }
     public void mostrarBebidas() {
-        for (int i = 0; i < listaBebidas.size(); i++) {
+        for (int i = 1; i < listaBebidas.size(); i++) {
+            System.out.print(i);
             System.out.println(listaBebidas.get(i));
         }
-        System.out.println("\n");   
+        System.out.println("\n"); 
+    }  
 }

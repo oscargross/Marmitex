@@ -13,7 +13,7 @@ class Saladas {
         return v1;
     }
     public String toString() {
-        return "R$ "+ v1 + " - " + s1;
+        return " - R$ "+ v1 + " - " + s1;
     }
 	public void setV1(Double v1) {
         this.v1 = v1;

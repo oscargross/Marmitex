@@ -16,6 +16,6 @@ class Principais {
         return v1;
     }
     public String toString() {
-        return "R$ "+ v1 + " - " + p1;
+        return " - R$ "+ v1 + " - " + p1;
    }
 }

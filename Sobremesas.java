@@ -15,6 +15,6 @@ class Sobremesas {
         return v1;
     }
     public String toString() {
-        return "R$ "+ v1 + " - " + so1;
+        return " - R$ "+ v1 + " - " + so1;
    }
 }
