@@ -1,41 +1,73 @@
 import java.util.ArrayList;
 
 class Comida {
-    ArrayList<ArrayList<Componentes>> listaTodasComidas;
-    ArrayList<Componentes> listaPrincipais;
-    ArrayList<Componentes> listaSaladas;
-    ArrayList<Componentes> listaSobremesas;
-    ArrayList<Componentes> listaAdicionais;
-    ArrayList<Componentes> listaBebidas;
 
-    public Comida(){
-        listaTodasComidas = new ArrayList<>();
-        listaPrincipais = new ArrayList<Componentes>();
-        listaSaladas = new ArrayList<Componentes>();
-        listaSobremesas = new ArrayList<Componentes>();
-        listaAdicionais = new ArrayList<Componentes>();
-        listaBebidas = new ArrayList<Componentes>();
-        listaPrincipais.add(null);
-        listaSaladas.add(null);
-        listaSobremesas.add(null);
-        listaAdicionais.add(null);
-        listaBebidas.add(null);
 
-        listaTodasComidas.add(null);
-        listaTodasComidas.add(listaSaladas);
-        listaTodasComidas.add(listaPrincipais);
-        listaTodasComidas.add(listaAdicionais);
-        listaTodasComidas.add(listaSobremesas);
-        listaTodasComidas.add(listaBebidas);
+    ArrayList<ArrayList> todasComidas = new ArrayList();
+    ArrayList<Componentes> principais = new ArrayList();
+    ArrayList<Componentes> saladas = new ArrayList();
+    ArrayList<Componentes> sobremesas = new ArrayList();
+    ArrayList<Componentes> adicionais = new ArrayList();
+    ArrayList<Componentes> bebidas = new ArrayList();
 
-    }   
-    public ArrayList<Componentes> addComida(String alimento, Double valor, ArrayList<Componentes> listaTempComidas) {
+    // public Comida(){
+    //     listaTodasComidas = new ArrayList<>();
+    //     listaPrincipais = new ArrayList<Componentes>();
+    //     listaSaladas = new ArrayList<Componentes>();
+    //     listaSobremesas = new ArrayList<Componentes>();
+    //     listaAdicionais = new ArrayList<Componentes>();
+    //     listaBebidas = new ArrayList<Componentes>();
+    //     // listaPrincipais.add(null);
+    //     // listaSaladas.add(null);
+    //     // listaSobremesas.add(null);
+    //     // listaAdicionais.add(null);
+    //     // listaBebidas.add(null);
+
+    //     // listaTodasComidas.add(null);
+    //     listaTodasComidas.add(listaSaladas);
+    //     listaTodasComidas.add(listaPrincipais);
+    //     listaTodasComidas.add(listaAdicionais);
+    //     listaTodasComidas.add(listaSobremesas);
+    //     listaTodasComidas.add(listaBebidas);
+
+    // }   
+    public void addComida(String alimento, Double valor, String tipo) {
         Componentes tipoComida = new Componentes();
-        tipoComida.setAlimento(alimento);
-        tipoComida.setValor(valor);
-        listaTempComidas.add(tipoComida);
-        return listaTempComidas;
+        switch (tipo) {
+            case "principais":
+                tipoComida.setAlimento(alimento);
+                tipoComida.setValor(valor);
+                principais.add(tipoComida);
+                todasComidas.add(principais);
+                break;
+            case "saladas":
+                tipoComida.setAlimento(alimento);
+                tipoComida.setValor(valor);
+                saladas.add(tipoComida);
+                todasComidas.add(saladas);
+                break;
+            case "sobremesas":
+                tipoComida.setAlimento(alimento);
+                tipoComida.setValor(valor);
+                sobremesas.add(tipoComida);
+                todasComidas.add(sobremesas);
+                break;
+            case "adicionais":
+                tipoComida.setAlimento(alimento);
+                tipoComida.setValor(valor);
+                adicionais.add(tipoComida);
+                todasComidas.add(adicionais);
+                break;
+            case "bebidas":
+                tipoComida.setAlimento(alimento);
+                tipoComida.setValor(valor);
+                bebidas.add(tipoComida);
+                todasComidas.add(bebidas);
+                break;    
+        }
+        
     }
+
     public void mostrarListaComidas(ArrayList<Componentes> listaComidasMostrar) {
         listaComidasMostrar = new ArrayList<Componentes>();
 
