@@ -18,7 +18,4 @@ class Componentes {
     public String toString() {
         return "R$ "+ valor + " - " + alimento;
    }
-	public char[] get(int i) {
-		return null;
-	}
 }
