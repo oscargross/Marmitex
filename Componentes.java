@@ -1,5 +1,4 @@
 class Componentes {
-
     private String alimento;
     private Double valor;
 

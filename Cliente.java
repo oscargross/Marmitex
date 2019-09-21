@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 class Cliente {
-    private ArrayList<ArrayList<Componentes>> historicoPedidos = new ArrayList<>();
     private ArrayList<Cliente> listaClientes = new ArrayList<>();
     private String nome;
     private Integer cpf;
@@ -10,6 +9,7 @@ class Cliente {
     private Integer cep;
     private Integer numero;
     private String bairro;
+    private Double desconto = 0d;
 
     public void mostrarDados(Cliente clienteEncontrado) {
         System.out.println(clienteEncontrado.nome);
@@ -21,20 +21,17 @@ class Cliente {
         System.out.println(clienteEncontrado.bairro);
     }
 
-    public ArrayList<ArrayList<Componentes>> getHistoricoPedidos() {
-        return historicoPedidos;
+    public Double getDesconto() {
+        return desconto;
     }
 
-    public void setHistoricoPedidos(ArrayList<ArrayList<Componentes>> historicoPedidos) {
-        this.historicoPedidos = historicoPedidos;
+    public void setDesconto(Double desconto) {
+        this.desconto = desconto;
     }
 
     public Cliente verificaNomeLista(String variavelNome) {
-        System.out.println(listaClientes);
         for (Cliente i : this.listaClientes) {
             String nomeDaLista = i.nome;
-            System.out.println(i.nome);
-
             if (variavelNome.equals(nomeDaLista)) {
                 return i;
             }
@@ -62,8 +59,6 @@ class Cliente {
     
     public void adicionarCliente(Cliente cliente) {
         this.listaClientes.add(cliente);
-
-
     }
     public String getNome() {
         return nome;
@@ -108,16 +103,9 @@ class Cliente {
         this.rua = rua;
     }
     public void setListaClientes(ArrayList<Cliente> listaClientes) {
-        listaClientes = new ArrayList<>();
         this.listaClientes = listaClientes;
     }
 	public ArrayList<Cliente> getListaClientes() {
         return listaClientes;
     }
-
-	public void adicionarHistorico(ArrayList<Componentes> listaPedidos) {
-        this.historicoPedidos.add(listaPedidos);
-
-	}
-
 }

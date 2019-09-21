@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 //Classe Modelo
 class Comida {
@@ -10,7 +9,6 @@ class Comida {
     ArrayList<Componentes> listaAdicionais;
     ArrayList<Componentes> listaBebidas;
     ArrayList<Componentes> listaPedidos;
- 
 
     public Comida(){
         listaTodasComidas = new ArrayList<>();
@@ -27,14 +25,12 @@ class Comida {
         listaAdicionais.add(null);
         listaBebidas.add(null);
         listaPedidos.add(null);
-
         listaTodasComidas.add(null);
         listaTodasComidas.add(listaSaladas);
         listaTodasComidas.add(listaPrincipais);
         listaTodasComidas.add(listaSobremesas);
         listaTodasComidas.add(listaAdicionais);
         listaTodasComidas.add(listaBebidas);
-
     }   
     public Componentes addComida(String alimento, Double valor) {
         Componentes tipoComida = new Componentes();
@@ -42,7 +38,12 @@ class Comida {
         tipoComida.setValor(valor);
         return tipoComida;
     }
-
+    public void limparListaPedidos() {
+        while(listaPedidos.size()>2){
+            listaPedidos.remove(1);
+        }
+        listaPedidos.remove(1);
+	}
     public Double somaValoresListaPedidos() {
         Double soma = 0d;
         for ( int i = 1 ; i < listaPedidos.size() ; i++) {
@@ -51,8 +52,7 @@ class Comida {
             soma = soma + variavel.getValor();
         }
         return soma;
-    }  
-    
+    }      
     public void mostrarListaComidas(ArrayList<Componentes> listaComidasMostrar) {
         for (int i = 1; i < listaComidasMostrar.size(); i++) {
             System.out.print(i+" - ");
@@ -96,7 +96,4 @@ class Comida {
         }
         System.out.println("\n");
     }
-  
-
-
 }

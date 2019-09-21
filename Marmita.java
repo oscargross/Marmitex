@@ -1,13 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
 //Classe de Sistema
 class Marmita {
-    Scanner scan = new Scanner(System.in);//seção critica é a parte do codigo que pode ser acessada opr 2 processos ao mesmo tempo
-        String diaDeHoje = "Segunda"; 
+    Scanner scan = new Scanner(System.in);
+    String diaDeHoje = "Terca"; 
+    static Double descontoParaRetornoClientes = 10d;
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);//seção critica é a parte do codigo que pode ser acessada opr 2 processos ao mesmo tempo
         Comida refeicao = new Comida();
         Marmita marmita = new Marmita();
 
@@ -49,40 +48,34 @@ class Marmita {
         refeicao.listaBebidas.add(refeicao.addComida("Suco de Laranja", 4.00));
         refeicao.listaBebidas.add(refeicao.addComida("Suco de Uva", 4.00));
         refeicao.listaBebidas.add(refeicao.addComida("Agua", 2.0));
+        
+        Scanner scan = new Scanner(System.in);
         Cliente cliente = new Cliente();
-
-        while(true){
-            cliente.adicionarCliente(marmita.cadastro(marmita, cliente));
-            System.out.println("Cadastro concluido com sucesso");
-
+        ClienteEspecial clienteEspecial = new ClienteEspecial();
+        Cliente clienteTemp = new ClienteEspecial();
+        clienteEspecial.setDesconto(descontoParaRetornoClientes);
+        boolean novoPedido = true;
+        while(novoPedido){
+            if((marmita.cadastro(marmita, clienteEspecial, cliente) == 1)){
+                clienteTemp = clienteEspecial;
+            }else{
+                clienteTemp = cliente;
+            }
+            //System.out.println(cliente.getListaClientes());
+            //System.out.println(clienteEspecial.getListaClientes());
             System.out.println("Selecione a opção:\n1 - desejo criar minha marmita\t2 - desejo o plano marmitas semanais");
             Double plano = scan.nextDouble();
             if (plano == 1){
-                marmita.inserirItens(cliente, refeicao, marmita, 1);
+                novoPedido = marmita.inserirItens(clienteTemp, refeicao, marmita, 1);
             }else{            
                 marmita.planoSemanal(refeicao, marmita);
-                marmita.inserirItens(cliente, refeicao, marmita, 4);
-
-
+                novoPedido = marmita.inserirItens(clienteTemp, refeicao, marmita, 4);
             }
+            refeicao.limparListaPedidos();
         }
-    
-    }
-    
-    private void planoSemanal(Comida refeicao, Marmita marmita) {
-        System.out.println("Segue cardapio por dia da semana:\n");
-        refeicao.planoSemanal("Segunda",1, diaDeHoje);
-        refeicao.planoSemanal("Terca",2, diaDeHoje);
-        refeicao.planoSemanal("Quarta",3, diaDeHoje);
-        refeicao.planoSemanal("Quinta",4, diaDeHoje);
-        refeicao.planoSemanal("Sexta",5, diaDeHoje);
-        refeicao.planoSemanal("Sabado",6, diaDeHoje);
-        System.out.println("O plano semanal não possui Adiocionais, nem bebidas, segue lista caso queira adicionar:\n");
-
-
     }
 
-    public Cliente cadastro(Marmita marmita, Cliente cliente) {
+    public int cadastro(Marmita marmita,ClienteEspecial clienteEspecial, Cliente cliente) {
         while (true){
             System.out.println("Bem vindo ao Sistema Marmitex PF\nPreencha os dados a seguir para completar o cadastro: ");
             System.out.println("Qual o seu nome: ");
@@ -91,7 +84,7 @@ class Marmita {
                 cliente.setNome(variavelNome); 
                 System.out.println("Qual o seu cpf: ");
                 Integer variavelCpf = scan.nextInt();
-                if (cliente.verificaCpfLista(variavelCpf)==null){
+                if (cliente.verificaCpfLista(variavelCpf)== null) {
                     cliente.setCpf(variavelCpf); 
                     System.out.println("Qual o seu fone: ");
                     Integer variavelFone = scan.nextInt();
@@ -105,35 +98,57 @@ class Marmita {
                         cliente.setCep(scan.nextInt()); 
                         System.out.println("Qual a seu Bairro: ");
                         cliente.setBairro(scan.next());
-                        return cliente;
-                        
+                        System.out.println("Cadastro concluido com sucesso");
+                        cliente.adicionarCliente(cliente);
+                        return 0;                       
                     }else{
-                        if (!marmita.jaTemCadastro(cliente.verificaFoneLista(variavelFone))){
+                        if (marmita.jaTemCadastro(cliente.verificaFoneLista(variavelFone))){
                             System.out.println("Faça o cadastro novamente inserindo um telefone diferente:\n\n");
                             continue;
                         }else{
-                            return cliente.verificaFoneLista(variavelFone);
-                        }                        
+                            Cliente troca = cliente.verificaFoneLista(variavelFone);
+                            clienteEspecial.cadastroEspecial(troca.getNome(), troca.getCpf(), troca.getFone(), troca.getRua(),
+                                    troca.getCep(), troca.getNumero(), troca.getBairro());
+                            clienteEspecial.adicionarCliente(clienteEspecial);
+                            return 1;
+                        }
                     }
-                }else{
-                    if(marmita.jaTemCadastro(cliente.verificaCpfLista(variavelCpf))){
+                } else {
+                    if (marmita.jaTemCadastro(cliente.verificaCpfLista(variavelCpf))) {
                         System.out.println("Faça o cadastro novamente inserindo CPF diferente:\n\n");
                         continue;
-                    }else{
-                        return cliente.verificaCpfLista(variavelCpf);
-                    } 
+                    } else {
+                        Cliente troca = cliente.verificaCpfLista(variavelCpf);
+                        clienteEspecial.cadastroEspecial(troca.getNome(), troca.getCpf(), troca.getFone(), troca.getRua(),
+                                troca.getCep(), troca.getNumero(), troca.getBairro());
+                        clienteEspecial.adicionarCliente(clienteEspecial);
+                        return 1;
+                    }
                 }
-            }else{
-                if(marmita.jaTemCadastro(cliente.verificaNomeLista(variavelNome))){
+            } else {
+                if (marmita.jaTemCadastro(cliente.verificaNomeLista(variavelNome))) {
                     System.out.println("Faça o cadastro novamente inserindo um Nome diferente:\n\n");
                     continue;
-                }else{
-                    return cliente.verificaNomeLista(variavelNome);
-                } 
+                } else {
 
-            
+                    Cliente troca = cliente.verificaNomeLista(variavelNome);
+                    clienteEspecial.cadastroEspecial(troca.getNome(), troca.getCpf(), troca.getFone(), troca.getRua(),
+                            troca.getCep(), troca.getNumero(), troca.getBairro());
+                    clienteEspecial.adicionarCliente(clienteEspecial);
+                    return 1;
+                }            
             }
         }
+    }
+    private void planoSemanal(Comida refeicao, Marmita marmita) {
+        System.out.println("Segue cardapio por dia da semana:\n");
+        refeicao.planoSemanal("Segunda",1, diaDeHoje);
+        refeicao.planoSemanal("Terca",2, diaDeHoje);
+        refeicao.planoSemanal("Quarta",3, diaDeHoje);
+        refeicao.planoSemanal("Quinta",4, diaDeHoje);
+        refeicao.planoSemanal("Sexta",5, diaDeHoje);
+        refeicao.planoSemanal("Sabado",6, diaDeHoje);
+        System.out.println("O plano semanal não possui Adiocionais, nem bebidas, segue lista caso queira adicionar:\n");
     }
     public boolean jaTemCadastro(Cliente clienteEncontrado) {
         System.out.println("Você já possui cadastro");
@@ -159,7 +174,7 @@ class Marmita {
                     break;
                 }
             }
-            System.out.println(refeicao.listaPedidos);
+            //System.out.println(refeicao.listaPedidos);
             System.out.println("Deseja escolher mais algum item:\n1: Sim\t2 - Nâo");
             Double maisItens = scan.nextDouble();
             if (maisItens == 1){
@@ -171,18 +186,21 @@ class Marmita {
         System.out.println("Sua marmita esta pronta:");
         System.out.println("Essa é sua Marmita:");
         refeicao.mostrarListaComidas(refeicao.listaPedidos);
-        cliente.adicionarHistorico(refeicao.listaPedidos);
         System.out.println("Seguem seus Dados:\n");
         cliente.mostrarDados(cliente);
-        System.out.println("\nValor Total: R$ "+refeicao.somaValoresListaPedidos()+"\nA Tele de R$ 8,00 será cobrada na entrega\n\nnGostaria de fazer mais um pedido:\n1 - Sim\t2 - Nâo");
+        Double valorTotal = 0d;
+        if (cliente.getDesconto()==0d){
+            valorTotal = refeicao.somaValoresListaPedidos();
+        }else{
+            System.out.println("\nValor Total: R$ "+refeicao.somaValoresListaPedidos()+"-"+cliente.getDesconto()+"% de desconto - Cliente Parceiro\n");
+            valorTotal = refeicao.somaValoresListaPedidos()-((refeicao.somaValoresListaPedidos()*cliente.getDesconto())/100d);
+        }
+        System.out.println("\nValor Total: R$ "+valorTotal+"\nA Tele de R$ 6,00 será cobrada na entrega\n\nnGostaria de fazer mais um pedido:\n1 - Sim\t2 - Nâo");
         Double retornar = scan.nextDouble();
         if (retornar == 1){
-            return false;
-        }else{
             return true;
+        }else{
+            return false;
         }
-
-    }
-   
-}   
-
+    }   
+}
