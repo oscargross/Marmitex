@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 class Cliente {
     private ArrayList<Cliente> listaClientes = new ArrayList<>();
     private String nome;
@@ -19,14 +18,6 @@ class Cliente {
         System.out.println(clienteEncontrado.numero);
         System.out.println(clienteEncontrado.cep);
         System.out.println(clienteEncontrado.bairro);
-    }
-
-    public Double getDesconto() {
-        return desconto;
-    }
-
-    public void setDesconto(Double desconto) {
-        this.desconto = desconto;
     }
 
     public Cliente verificaNomeLista(String variavelNome) {
@@ -107,5 +98,11 @@ class Cliente {
     }
 	public ArrayList<Cliente> getListaClientes() {
         return listaClientes;
+    }
+    public Double getDesconto() {
+        return desconto;
+    }
+    public void setDesconto(Double desconto) {
+        this.desconto = desconto;
     }
 }

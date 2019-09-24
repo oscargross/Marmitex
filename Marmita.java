@@ -3,12 +3,12 @@ import java.util.Scanner;
 //Classe de Sistema
 class Marmita {
     Scanner scan = new Scanner(System.in);
-    String diaDeHoje = "Terca"; 
-    static Double descontoParaRetornoClientes = 10d;
-
     public static void main(String[] args) {
         Comida refeicao = new Comida();
         Marmita marmita = new Marmita();
+
+        String diaDeHoje = "Terca";
+        Double descontoParaRetornoClientes = 10d;
 
         //Adicionar Saladas ao menu.
         /*SEGUNDA - PLANO SEMANAL*/ refeicao.listaSaladas.add(refeicao.addComida("Alface", 1.00));
@@ -68,7 +68,7 @@ class Marmita {
             if (plano == 1){
                 novoPedido = marmita.inserirItens(clienteTemp, refeicao, marmita, 1);
             }else{            
-                marmita.planoSemanal(refeicao, marmita);
+                marmita.planoSemanal(refeicao, marmita, diaDeHoje);
                 novoPedido = marmita.inserirItens(clienteTemp, refeicao, marmita, 4);
             }
             refeicao.limparListaPedidos();
@@ -140,7 +140,7 @@ class Marmita {
             }
         }
     }
-    private void planoSemanal(Comida refeicao, Marmita marmita) {
+    public void planoSemanal(Comida refeicao, Marmita marmita, String diaDeHoje) {
         System.out.println("Segue cardapio por dia da semana:\n");
         refeicao.planoSemanal("Segunda",1, diaDeHoje);
         refeicao.planoSemanal("Terca",2, diaDeHoje);
@@ -162,7 +162,7 @@ class Marmita {
         }
     }
 
-    public Boolean inserirItens(Cliente cliente, Comida refeicao, Marmita marmita, int qualLista) {
+    public boolean inserirItens(Cliente cliente, Comida refeicao, Marmita marmita, int qualLista) {
         ArrayList<Componentes> listaTemp = new ArrayList<Componentes>();
         while (refeicao.listaTodasComidas.size() > qualLista){
             listaTemp = (refeicao.listaTodasComidas.get(qualLista));

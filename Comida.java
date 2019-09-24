@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 //Classe Modelo
 class Comida {
-    Componentes tipoComida = new Componentes();
+    //Componentes tipoComida = new Componentes();
     ArrayList<ArrayList<Componentes>> listaTodasComidas;
     ArrayList<Componentes> listaPrincipais;
     ArrayList<Componentes> listaSaladas;
